@@ -1,0 +1,899 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360 Business Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="services.css">
+    <link rel="stylesheet" href="style_form.css">
+    <link rel="stylesheet" href="ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+            <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0rem 1rem;
+        }
+
+        /* Header styles */
+        .header {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .header {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .logo-container {
+            width: 200px;
+            height: auto;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .title-container {
+            flex: 1;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .title-gst {
+            color: #444;
+        }
+
+        .title-registration {
+            color: #22c55e;
+        }
+
+        /* Main content styles */
+        .main-content {
+            background-color: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .main-heading {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #22c55e;
+            margin-bottom: 1rem;
+             text-align: left;
+        }
+
+        .description {
+            color: #333;
+            margin-bottom: 1.5rem;
+          text-align: left;
+        }
+
+        .sub-heading {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #22c55e;
+            margin-bottom: 1rem;
+        }
+
+        /* Radio button styles */
+        .radio-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .radio-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .radio-options {
+                flex-direction: row;
+            }
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .radio-label {
+            font-weight: 500;
+        }
+
+        /* Content box styles */
+        .content-box {
+            border: 1px solid #22c55e;
+            border-radius: 0.375rem;
+            padding: 1.5rem;
+            background-color: white;
+            min-height: 11rem;
+            height: auto;
+            margin-bottom: 2rem; /* Added spacing for the button */
+        }
+
+        /* Document list styles */
+        .document-container {
+            display: none;
+        }
+
+        .document-container.active {
+            display: block;
+            width: 100%;
+        }
+
+        .document-heading {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .document-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .document-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .document-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.2s;
+        }
+
+        .document-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .document-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background-color: #22c55e;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        .document-text {
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* Custom radio button styling */
+        input[type="radio"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="radio"]:checked {
+            border-color: #22c55e;
+            background-color: white;
+            box-shadow: inset 0 0 0 4px #22c55e;
+        }
+
+        /* Default message */
+        .default-message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Continue button styles */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .continue-button {
+            background-color: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            min-width: 180px;
+            text-align: center;
+        }
+
+        .continue-button:hover {
+            background-color: #16a34a;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .continue-button:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .continue-button:disabled {
+            background-color: #a3e4b8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .continue-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #0cf404;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        }
+
+        .continue-button:hover {
+        background-color: #03ff81;
+        }
+        /* Hide popup and overlay by default */
+        .popup-overlay,
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+        }
+
+        .popup-overlay {
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.4);
+        }
+
+        .popup {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 350px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #888;
+            cursor: pointer;
+        }
+    </style>
+
+
+</head>
+<body>
+    <!-- Header -->
+
+<header>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <a href="index.php.html"><img src="images/logo360.png" alt="360 Logo" id="logo-img"></a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="mobile-menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav id="main-nav">
+            <ul class="menu">
+                <li><a href="index.php.html" class="">Home</a></li>
+                <li><a href="about.php.html" class="">About</a></li>
+                <li><a href="service.php.html" class="">Services</a></li>
+                <li><a href="testimonial.php.html" class="">Client Story</a></li>
+                <li><a href="contact.php.html" class="">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+
+
+    <section>
+
+        <div class="container">
+            <div class="header">
+            <div class="logo-container">
+                <img src="images/registration/FSSAIRegistration.png" style="width:150px; height:150px;" alt="Laptop illustration">
+            </div>
+            <div class="title-container">
+                <h1 class="title">
+                    <span class="title-gst">MSME</span> <span class="title-registration">Registration</span>
+                </h1>
+                <p>Udyam Registration is an official certification provided by the Ministry of Micro, Small & Medium Enterprises (MSME) to recognize businesses as Micro, Small, or Medium Enterprises (MSMEs). It enables businesses to access government benefits, subsidies, and financial support. Our Udyam Registration Service ensures quick and hassle-free registration, helping businesses unlock various MSME advantages.</p>
+
+            </div>
+        </div>
+        </div>
+
+
+        <div class="container">
+            <div class="main-content">
+            <h2 class="main-heading">
+                Why Get Udyam (MSME) Registration?
+            </h2>
+            <p class="description">
+                Udyam Registration offers numerous benefits that empower businesses to grow, compete, and thrive. Here's why every eligible enterprise should register .
+            </p>
+             <h3 class="description">
+                Access to Government Subsidies & Schemes:
+              </h3>
+            <p class="description">
+              Registered MSMEs are eligible for various central and state government schemes, including subsidies, incentives, and financial support designed to boost small businesses.
+              </p>
+
+               <h3 class="description">
+                Easier Access to Business Loans & Credit:
+              </h3>
+            <p class="description">
+              With Udyam registration, your business becomes more credible to financial institutions, making it easier to secure collateral-free loans under government-supported schemes like CGTMSE.
+              </p>
+               <h3 class="description">
+                Lower Interest Rates on Bank Loans:
+              </h3>
+            <p class="description">
+              Banks often provide MSMEs with loans at reduced interest rates as part of RBI guidelines, helping you save significantly on financial costs.
+              </p>
+
+               <h3 class="description">
+                Protection Against Delayed Payments:
+              </h3>
+            <p class="description">
+              The MSME Development Act provides protection to registered businesses from delayed payments by buyers, ensuring better cash flow and financial stability.
+              </p>
+
+              <h3 class="description">
+                Preference in Government Tenders:
+              </h3>
+            <p class="description">
+              Registered MSMEs get special preference in public procurement and are exempted from earnest money deposits (EMD) in many government tenders.
+              </p>
+
+             <h3 class="description">
+                Concessions on Utility Bills & Trademark Fees:
+              </h3>
+            <p class="description">
+              Enjoy discounts on electricity bills and reduced government fees for patent and trademark registrations, further lowering your operational costs.
+              </p>
+              
+          </div>
+      </div>
+           <div class="container">
+            <div class="main-content">
+            <h2 class="main-heading">
+               Who Should Apply for Udyam (MSME) Registration?
+            </h2>
+              <p class="description"> 
+              Udyam Registration is essential for a wide range of businesses seeking government recognition and benefits. If you fall into any of the categories 
+                below, Udyam registration can unlock various financial and legal advantages for your enterprise</p><br>
+              
+               <h3 class="description">
+                Micro, Small & Medium Enterprises (MSMEs):
+              </h3>
+            <p class="description">
+              Whether you’re just starting or already established, if your business falls within the MSME investment 
+              and turnover limits, registration is highly recommended to access government support and incentives.
+              </p>
+               <h3 class="description">
+                Startups & Growing Businesses:
+              </h3>
+            <p class="description">
+              New and emerging businesses aiming to scale quickly can benefit from the credibility, financial aid, and legal support that comes with Udyam registration.
+              </p>
+               <h3 class="description">
+                Manufacturers, Traders & Service Providers:
+              </h3>
+            <p class="description">
+              From factory-based manufacturers to retailers and service providers (like consultants, IT firms, repair services, etc.), Udyam registration is applicable across industries.
+              </p>
+               <h3 class="description">
+                Proprietorships, Partnerships & Companies:
+              </h3>
+            <p class="description">
+              No matter your business structure sole proprietorship, partnership firm, private limited company, LLP, or any other entity Udyam registration is available and beneficial for all.
+              </p>                 
+          </div>
+          </div>
+           <div class="container">
+            <div class="main-content">
+            <h2 class="main-heading">
+                Why Choose Us?
+            </h2>
+              
+              <h3 class="description">
+                Fast & Hassle-Free MSME Registration:
+              </h3>
+            <p class="description">
+               Get your MSME (Udyam) certificate quickly and effortlessly. Our streamlined process ensures minimum paperwork and maximum speed so you can focus on growing your business.
+              </p>
+              <h3 class="description">
+                Expert Consultation & Guidance:
+              </h3>
+            <p class="description">
+               Our experienced professionals offer personalized support on various government schemes, 
+              subsidies, and loan benefits available exclusively for MSMEs. We help you make the most of your MSME registration.
+              </p>
+              <h3 class="description">
+                Affordable & Transparent Pricing:
+              </h3>
+            <p class="description">
+               We believe in fair pricing with no hidden costs. Get high-quality service at budget-friendly rates—what you see is what you pay.
+              </p>
+              <h3 class="description">
+                Dedicated Support for MSME Compliance:
+              </h3>
+            <p class="description">
+               From registration to post-registration compliance, our dedicated team is here to assist you at every step—ensuring your MSME stays compliant and benefits from all eligible schemes.
+              </p>
+              
+          </div>
+      </div>
+          <div class="container">
+            <h3 class="sub-heading">Choose why you business type </h3>
+
+            <div class="radio-group">
+                <div class="radio-options">
+                    <div class="radio-option">
+                        <input type="radio" id="proprietorships" name="business-type" value="proprietorships" checked="">
+                        <label for="proprietorships" class="radio-label">Proprietorships</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="partnerships" name="business-type" value="partnerships">
+                        <label for="partnerships" class="radio-label">Partnerships & LLPs</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <div class="default-message" id="default-message">
+                    Please select a business type above to view required documents
+                </div>
+                
+                <!-- Proprietorships Documents -->
+                <div class="document-container" id="proprietorships-docs">
+                    <h4 class="document-heading">Required Documents for Proprietorships:</h4>
+                    <div class="document-columns">
+                        <div class="document-column">
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Aadhaar Card</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">PAN Card</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Photograph of Proprietor</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Company register certificate</span>
+                            </div>
+                        </div>
+                        <div class="document-column">
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Property Document</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Electricity Bill</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Property Tax Receipt</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Partnerships Documents -->
+                <div class="document-container" id="partnerships-docs">
+                    <h4 class="document-heading">Required Documents for Partnerships & LLPs:</h4>
+                    <div class="document-columns">
+                        <div class="document-column">
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Partner-Specific Document (Assume two Partners)</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Business information</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Aadhar Card</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Company register certificate</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">PAN Card</span>
+                            </div>
+                        </div>
+                        <div class="document-column">
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Company PAN Card</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Photograph</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Company Seal</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Property Document</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Companies Documents -->
+                <div class="document-container" id="companies-docs">
+                    <h4 class="document-heading">Required Documents for Private & Public Limited Companies:</h4>
+                    <div class="document-columns">
+                        <div class="document-column">
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Company information</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Director information</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Contact Details</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Business Details</span>
+                            </div>
+                        </div>
+                        <div class="document-column">
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Property Document</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Electricity Bill</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Property Tax Receipt</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           <div class="popup-overlay" id="inlinePopupOverlay"></div>
+            <div class="popup" id="inlinePopup">
+                <button class="close-btn" id="closePopupBtn">×</button>
+                <div class="formcontainer">
+                    <div class="form-title">Contact Detials</div>
+                    <form id="userForm" method="POST" validate="">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="userName">Name</label>
+                                <input type="text" id="userName" name="userName" placeholder="Enter your name" required="">
+                                <small class="help-text">User-name is required.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="mobileNumber">Number</label>
+                                <input type="text" id="mobileNumber" name="mobileNumber" placeholder="Enter Mobile Number" required="">
+                                <small class="help-text">Please enter mobile number.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="mailID">Email</label>
+                                <input type="email" id="mailID" name="mailID" placeholder="Enter Mail Address" required="">
+                                <small class="help-text">Please enter mail address.</small>
+                            </div>
+                        </div>
+                        <div class="submit-container">
+                            <button type="submit" id="openFormButton" class="submit-button">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Continue Button -->
+            <div class="button-container">
+             <button id="continue-button" class="continue-button" disabled="">Continue</button>
+            </div>
+        </div>
+
+        
+
+    </section>
+
+
+    <!-- Footer -->
+        <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo">
+                        <img src="images/360logowhite.png" alt="360 Logo">
+                      
+                    </div>
+                    <p>Your trusted partner for business growth and compliance since 2015. We're dedicated to helping businesses of all sizes succeed.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#testimonial">Testimonial</a></li>
+                        <li><a href="#blog">Blogs</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Stay in the loop</h3>
+                    <p>Subscribe to our newsletter for the latest updates and insights.</p>
+                    <form>
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span class="current-year">2025</span> 360degreementor. All rights reserved.</p>
+                <div class="payment-methods">
+<p>&copy; <span class="current-year">2025</span> Designed &amp; Developed By <a href="index-1.htm">Pentagon Innovations</a> </p>
+               </div>
+            </div>
+        </div>
+    </footer>    
+    
+    <script src="script.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Elements
+    const radioButtons = document.querySelectorAll('input[name="business-type"]');
+    const defaultMessage = document.getElementById('default-message');
+    const proprietorshipsDocs = document.getElementById('proprietorships-docs');
+    const partnershipsDocs = document.getElementById('partnerships-docs');
+    const companiesDocs = document.getElementById('companies-docs');
+    const continueButton = document.getElementById('continue-button');
+    
+    const userForm = document.getElementById('userForm');
+    const inlinePopup = document.getElementById('inlinePopup');
+    const inlinePopupOverlay = document.getElementById('inlinePopupOverlay');
+    const closePopupBtn = document.getElementById('closePopupBtn');
+
+    let selectedBusinessType = null;
+
+    // Show and hide popup functions
+    function showPopup() {
+        inlinePopup.style.display = 'block';
+        inlinePopupOverlay.style.display = 'block';
+    }
+    function hidePopup() {
+        inlinePopup.style.display = 'none';
+        inlinePopupOverlay.style.display = 'none';
+    }
+
+    // Hide all documents and reset UI
+    function hideAllDocuments() {
+        defaultMessage.style.display = 'flex';
+        proprietorshipsDocs.classList.remove('active');
+        partnershipsDocs.classList.remove('active');
+        companiesDocs.classList.remove('active');
+        continueButton.disabled = true;
+    }
+
+    // Radio buttons change event
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', function () {
+            hideAllDocuments();
+
+            if (this.value === 'proprietorships') {
+                defaultMessage.style.display = 'none';
+                proprietorshipsDocs.classList.add('active');
+                continueButton.disabled = false;
+            } else if (this.value === 'partnerships') {
+                defaultMessage.style.display = 'none';
+                partnershipsDocs.classList.add('active');
+                continueButton.disabled = false;
+            } else if (this.value === 'companies') {
+                defaultMessage.style.display = 'none';
+                companiesDocs.classList.add('active');
+                continueButton.disabled = false;
+            }
+
+            selectedBusinessType = this.value;
+        });
+    });
+
+    // Continue button click
+    continueButton.addEventListener("click", function () {
+        if (selectedBusinessType) {
+            showPopup();
+        } else {
+            alert("Please select a business type.");
+        }
+    });
+
+    // Form submission
+    userForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const userName = document.getElementById('userName').value.trim();
+        const mobileNumber = document.getElementById('mobileNumber').value.trim();
+        const mailID = document.getElementById('mailID').value.trim();
+
+        if (!selectedBusinessType) {
+            alert("Please select a business type.");
+            return;
+        }
+
+        const data = {
+            userName,
+            mobileNumber,
+            mailID,
+            businessType: selectedBusinessType,
+        };
+
+        fetch('save_request.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(response => {
+            if (response.success) {
+                const requestId = response.requestId;
+
+                // Save user details in localStorage
+                localStorage.setItem('gst_user_details', JSON.stringify({
+                    userName,
+                    mobileNumber,
+                    mailID,
+                    businessType: selectedBusinessType,
+                    requestId: requestId
+                }));
+
+                // Redirect with request ID in query param
+                if (selectedBusinessType === 'proprietorships') {
+                    window.location.href = "MSME_Registration_Form.php?request_id=" + encodeURIComponent(requestId);
+                } else if (selectedBusinessType === 'partnerships') {
+                    window.location.href = "MSME_Registration.php?request_id=" + encodeURIComponent(requestId);
+                } else {
+                    alert('Invalid selection.');
+                }
+            } else {
+                alert('Error saving request.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error saving request.');
+        });
+    });
+
+    // Close popup listeners
+    closePopupBtn.addEventListener('click', hidePopup);
+    inlinePopupOverlay.addEventListener('click', hidePopup);
+
+    // Auto select first radio button on load
+    if (radioButtons.length > 0) {
+        radioButtons[0].checked = true;
+        radioButtons[0].dispatchEvent(new Event('change'));
+    }
+
+    // Load saved user details into hidden fields (if present)
+    const userDetails = JSON.parse(localStorage.getItem('gst_user_details'));
+    if (userDetails) {
+        if (document.getElementById('hiddenUserName'))
+            document.getElementById('hiddenUserName').value = userDetails.userName || '';
+        if (document.getElementById('hiddenMobileNumber'))
+            document.getElementById('hiddenMobileNumber').value = userDetails.mobileNumber || '';
+        if (document.getElementById('hiddenMailID'))
+            document.getElementById('hiddenMailID').value = userDetails.mailID || '';
+        if (document.getElementById('hiddenBusinessType'))
+            document.getElementById('hiddenBusinessType').value = userDetails.businessType || '';
+        if (document.getElementById('hiddenRequestId'))
+            document.getElementById('hiddenRequestId').value = userDetails.requestId || '';
+    }
+});
+</script>
+
+
+</body>
+</html>

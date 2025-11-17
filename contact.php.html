@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>360 Business Services</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Your existing styles here */
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  
+<header>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <a href="index.php.html"><img src="images/logo360.png" alt="360 Logo" id="logo-img"></a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="mobile-menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav id="main-nav">
+            <ul class="menu">
+                <li><a href="index.php.html" class="">Home</a></li>
+                <li><a href="about.php.html" class="">About</a></li>
+                <li><a href="service.php.html" class="">Services</a></li>
+                <li><a href="testimonial.php.html" class="">Client Story</a></li>
+                <li><a href="contact.php.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+
+
+  <!-- Hero Section -->
+  <section class="hero" id="about">
+    <div class="container">
+      <div class="hero-content">
+        <h1>
+          Insights That Empower Explore
+          <span class="green1"> Expert Knowledge, Tips </span><span class="green bold">& Resources to Fuel Your Growth</span>
+        </h1>
+        <p>
+          Stay informed with curated articles, industry updates, and expert
+          advice across business, finance, legal, and technology. Our content
+          is designed to guide you through challenges, spark ideas, and help
+          you make smarter decisions.
+        </p>
+      </div>
+      <div class="hero-image">
+        <img src="images/pana.png" alt="Technology Solutions Illustration">
+      </div>
+    </div>
+  </section>
+  
+    <section class="hero" id="about">
+    <div class="container">
+      <div class="hero-content">
+        <h2>Contact Us</h2>
+        <p>Please fill in the form below and we’ll get back to you shortly.</p>
+        <br>
+        <form action="submit_form.php" method="POST">
+          <div class="form-group">
+            <input type="text" id="name" name="name" required="" placeholder="Your full name">
+          </div>
+
+          <div class="form-group">
+            <input type="email" id="email" name="email" required="" placeholder="your@email.com">
+          </div>
+
+          <div class="form-group">
+
+            <input type="tel" id="phone" name="phone" placeholder="Phone Number">
+          </div>
+
+          <div class="form-group">
+
+            <textarea id="message" name="message" rows="5" style="resize: none;" required="" placeholder="Type your message here..."></textarea>
+          </div>
+
+          <button type="submit" class="cta-button">
+            Send Message <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    <div class="contact-image">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.4700058190024!2d80.13549717585693!3d12.941748815530467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525ffa35be1323%3A0x46eaec9108ea8096!2s360%20Degree%20Mentor%20Private%20Limited!5e0!3m2!1sen!2sin!4v1750143804877!5m2!1sen!2sin" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    </div>
+  </section>
+
+  
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2>From Startup to Success<br>We Handle the Legalities</h2>
+    </div>
+  </section>
+
+  <!-- Footer -->
+      <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo">
+                        <img src="images/360logowhite.png" alt="360 Logo">
+                      
+                    </div>
+                    <p>Your trusted partner for business growth and compliance since 2015. We're dedicated to helping businesses of all sizes succeed.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#testimonial">Testimonial</a></li>
+                        <li><a href="#blog">Blogs</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Stay in the loop</h3>
+                    <p>Subscribe to our newsletter for the latest updates and insights.</p>
+                    <form>
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span class="current-year">2025</span> 360degreementor. All rights reserved.</p>
+                <div class="payment-methods">
+<p>&copy; <span class="current-year">2025</span> Designed &amp; Developed By <a href="index-1.htm">Pentagon Innovations</a> </p>
+               </div>
+            </div>
+        </div>
+    </footer>
+  <script src="script.js"></script>
+</body>
+</html>

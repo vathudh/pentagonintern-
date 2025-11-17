@@ -1,0 +1,745 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360 Business Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="services.css">
+    <link rel="stylesheet" href="style_form.css">
+    <link rel="stylesheet" href="ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+            <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0rem 1rem;
+        }
+
+        /* Header styles */
+        .header {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .header {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .logo-container {
+            width: 200px;
+            height: auto;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .title-container {
+            flex: 1;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .title-gst {
+            color: #444;
+        }
+
+        .title-registration {
+            color: #22c55e;
+        }
+
+        /* Main content styles */
+        .main-content {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .main-heading {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #22c55e;
+            margin-bottom: 1rem;
+             text-align: left;
+        }
+
+        .description {
+            color: #333;
+            margin-bottom: 1rem;
+          text-align: left;
+        }
+
+        .sub-heading {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #22c55e;
+            margin-bottom: 1rem;
+        }
+
+        /* Radio button styles */
+        .radio-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .radio-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .radio-options {
+                flex-direction: row;
+            }
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .radio-label {
+            font-weight: 500;
+        }
+
+        /* Content box styles */
+        .content-box {
+            border: 1px solid #22c55e;
+            border-radius: 0.375rem;
+            padding: 1.5rem;
+            background-color: white;
+            min-height: 11rem;
+            height: auto;
+            margin-bottom: 2rem; /* Added spacing for the button */
+        }
+
+        /* Document list styles */
+        .document-container {
+            display: none;
+        }
+
+        .document-container.active {
+            display: block;
+            width: 100%;
+        }
+
+        .document-heading {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .document-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .document-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .document-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.2s;
+        }
+
+        .document-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .document-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background-color: #22c55e;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        .document-text {
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* Custom radio button styling */
+        input[type="radio"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="radio"]:checked {
+            border-color: #22c55e;
+            background-color: white;
+            box-shadow: inset 0 0 0 4px #22c55e;
+        }
+
+        /* Default message */
+        .default-message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Continue button styles */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .continue-button {
+            background-color: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            min-width: 180px;
+            text-align: center;
+        }
+
+        .continue-button:hover {
+            background-color: #16a34a;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .continue-button:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .continue-button:disabled {
+            background-color: #a3e4b8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .continue-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #0cf404;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        }
+
+        .continue-button:hover {
+        background-color: #03ff81;
+        }
+        /* Hide popup and overlay by default */
+        .popup-overlay,
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+        }
+
+        .popup-overlay {
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.4);
+        }
+
+        .popup {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 350px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #888;
+            cursor: pointer;
+        }
+    </style>
+
+
+</head>
+<body>
+    <!-- Header -->
+
+<header>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <a href="index.php.html"><img src="images/logo360.png" alt="360 Logo" id="logo-img"></a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="mobile-menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav id="main-nav">
+            <ul class="menu">
+                <li><a href="index.php.html" class="">Home</a></li>
+                <li><a href="about.php.html" class="">About</a></li>
+                <li><a href="service.php.html" class="">Services</a></li>
+                <li><a href="testimonial.php.html" class="">Client Story</a></li>
+                <li><a href="contact.php.html" class="">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+
+
+    <section>
+
+       
+        <div class="container">
+            <div class="header">
+            <div class="logo-container">
+                <img src="images/gst/GSTRegistration.png" style="width:150px; height:150px;" alt="Laptop illustration">
+            </div>
+            <div class="title-container">
+                <h1 class="title">
+                    <span class="title-gst">ITR-1 (Sahaj)</span> <span class="title-registration">Filing Service</span>
+                </h1>
+                <p>ITR-1, also known as Sahaj, is a simplified Income Tax Return form applicable to salaried individuals, pensioners, and taxpayers with limited income sources. Our ITR-1 Filing Service ensures accurate filing, helping you claim deductions, avoid penalties, and stay tax-compliant.</p>
+
+            </div>
+        </div>
+        </div>
+
+
+        <div class="container">
+            <div class="main-content">
+            <h2 class="main-heading">
+                Who Can File ITR-1?
+            </h2>
+            <p class="description">
+                ITR-1 is suitable for resident individuals (excluding Not Ordinarily Resident or Non-Resident) with total income up to ₹50 lakh from the following sources:
+            </p>
+             <h3 class="description">
+                 Salary or Pension Income:
+              </h3>
+            <p class="description">
+             Applicable to salaried employees or pensioners receiving a pension from a former employer.
+              </p>
+
+               <h3 class="description">
+                Income from One House Property:
+              </h3>
+            <p class="description">
+              Individuals who own a single house property (excluding cases with brought forward losses).
+              </p>
+               <h3 class="description">
+                Other Sources of Income:              </h3>
+            <p class="description">
+              Includes income like interest from savings accounts, fixed deposits, recurring deposits, and family pension  Excludes income from lottery, horse racing, or other legal gambling.
+              </p>
+
+               <h3 class="description">
+                Agricultural Income (Up to ₹5,000):
+              </h3>
+            <p class="description">
+              Small-scale agricultural income under the ₹5,000 threshold is allowed under ITR-1.
+              </p> 
+            <h3 class="description">
+                Annual Income Limit:
+            </h3>
+            <p class="description">
+              The total income (from all the above sources combined) must not exceed ₹50 lakh in the financial year.
+              </p> 
+          </div>
+      </div>
+
+              <div class="container">
+            <div class="main-content">
+            <h2 class="main-heading">
+               Who Cannot File ITR-1 (Sahaj)?
+            </h2>
+            <p class="description">
+                ITR-1 is not applicable for individuals falling under the following categories.
+            </p>
+             <h3 class="description">
+                Business Owners, Freelancers, or Self-Employed Individuals:
+              </h3>
+            <p class="description">
+             Those earning income from business, profession, or freelance work must file ITR-3 or ITR-4 instead.
+              </p>
+
+               <h3 class="description">
+                Annual Income Exceeding ₹50 Lakh:
+              </h3>
+            <p class="description">
+              If your total income exceeds ₹50,00,000 in a financial year, ITR-1 is not permitted.
+              </p>
+               <h3 class="description">
+                Capital Gains Income:              
+            </h3>
+            <p class="description">
+             Includes income from selling shares, mutual funds, property, or any capital asset.
+              </p>
+
+               <h3 class="description">
+                Foreign Assets or Foreign Income:
+              </h3>
+            <p class="description">
+              If you own assets outside India or earn any income from abroad, you must file ITR-2 or other relevant forms.
+              </p> 
+               <h3 class="description">
+               Income from More Than One House Property:
+              </h3>
+            <p class="description">
+             If you own and earn income from more than one house property, ITR-1 is not valid.
+              </p> 
+            </div>
+      </div>
+      
+        <div class="container">
+            <div class="main-content">
+            <h2 class="main-heading">
+                Why Choose Our ITR-1 Filing Service?
+            </h2>
+            <p class="description">
+                
+            </p>
+             <h3 class="description">
+                Error-Free Filing:
+              </h3>
+            <p class="description">
+              We ensure 100% accuracy, compliance with the latest income tax rules, and proper validation before submission.
+              </p>
+
+               <h3 class="description">
+                 Maximized Tax Savings:
+              </h3>
+            <p class="description">
+              Our experts help you claim all eligible deductions under Sections like 80C, 80D, 80E, and more—so you save more legally.
+              </p>
+               <h3 class="description">
+               Timely Submission:              </h3>
+            <p class="description">
+             We make sure your return is filed before the deadline, helping you avoid penalties and interest on late filing.
+              </p>
+
+               <h3 class="description">
+                 Hassle-Free Process:
+              </h3>
+            <p class="description">
+              From document collection to e-verification, we take care of the entire process—you just relax while we handle the tax work.
+              </p> 
+          </div>
+      </div>
+
+<div class="container">
+    <h3 class="sub-heading">ITR-1 Filing Required Documents</h3>
+
+    <div class="content-box">
+        <div class="document-container active" id="itr1-docs">
+            <h4 class="document-heading">Required Documents for ITR-1 Filing:</h4>
+            <div class="document-columns">
+                <div class="document-column">
+                    <div class="document-item">
+                        <span class="document-icon">✓</span>
+                        <span class="document-text">PAN Card</span>
+                    </div>
+                    <div class="document-item">
+                        <span class="document-icon">✓</span>
+                        <span class="document-text">Aadhaar Card</span>
+                    </div>
+                    <div class="document-item">
+                        <span class="document-icon">✓</span>
+                        <span class="document-text">Form 16 from Employer</span>
+                    </div>
+                    <div class="document-item">
+                        <span class="document-icon">✓</span>
+                        <span class="document-text">Bank Account Details</span>
+                    </div>
+                </div>
+                <div class="document-column">
+                    <div class="document-item">
+                        <span class="document-icon">✓</span>
+                        <span class="document-text">Salary Slips (if available)</span>
+                    </div>
+                    <div class="document-item">
+                        <span class="document-icon">✓</span>
+                        <span class="document-text">Rent Receipts (if claiming HRA)</span>
+                    </div>
+                    <div class="document-item">
+                        <span class="document-icon">✓</span>
+                        <span class="document-text">Investment Proofs (if any)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Overlay and Form -->
+    <div class="popup-overlay" id="inlinePopupOverlay"></div>
+    <div class="popup" id="inlinePopup">
+        <button class="close-btn" id="closePopupBtn">×</button>
+        <div class="formcontainer">
+            <div class="form-title">Contact Details</div>
+            <form id="userForm" method="POST" validate="">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="userName">Name</label>
+                        <input type="text" id="userName" name="userName" placeholder="Enter your name" required="">
+                        <small class="help-text">User-name is required.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNumber">Number</label>
+                        <input type="text" id="mobileNumber" name="mobileNumber" placeholder="Enter Mobile Number" required="">
+                        <small class="help-text">Please enter mobile number.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="mailID">Email</label>
+                        <input type="email" id="mailID" name="mailID" placeholder="Enter Mail Address" required="">
+                        <small class="help-text">Please enter mail address.</small>
+                    </div>
+                </div>
+                <div class="submit-container">
+                    <button type="submit" id="openFormButton" class="submit-button">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Continue Button -->
+    <div class="button-container">
+        <button id="continue-button" class="continue-button">Continue</button>
+    </div>
+</div>
+
+
+        
+
+    </section>
+
+
+    <!-- Footer -->
+        <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo">
+                        <img src="images/360logowhite.png" alt="360 Logo">
+                      
+                    </div>
+                    <p>Your trusted partner for business growth and compliance since 2015. We're dedicated to helping businesses of all sizes succeed.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#testimonial">Testimonial</a></li>
+                        <li><a href="#blog">Blogs</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Stay in the loop</h3>
+                    <p>Subscribe to our newsletter for the latest updates and insights.</p>
+                    <form>
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span class="current-year">2025</span> 360degreementor. All rights reserved.</p>
+                <div class="payment-methods">
+<p>&copy; <span class="current-year">2025</span> Designed &amp; Developed By <a href="index-1.htm">Pentagon Innovations</a> </p>
+               </div>
+            </div>
+        </div>
+    </footer>    
+    
+    <script src="script.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const continueButton = document.getElementById('continue-button');
+    const userForm = document.getElementById('userForm');
+    const inlinePopup = document.getElementById('inlinePopup');
+    const inlinePopupOverlay = document.getElementById('inlinePopupOverlay');
+    const closePopupBtn = document.getElementById('closePopupBtn');
+
+    // Fixed business type (no radio selection anymore)
+    const selectedBusinessType = "proprietorships";
+
+    // Show popup
+    function showPopup() {
+        inlinePopup.style.display = 'block';
+        inlinePopupOverlay.style.display = 'block';
+    }
+
+    // Hide popup
+    function hidePopup() {
+        inlinePopup.style.display = 'none';
+        inlinePopupOverlay.style.display = 'none';
+    }
+
+    // Always enable continue button and show document section
+    continueButton.disabled = false;
+
+    // Show popup on continue
+    continueButton.addEventListener("click", function () {
+        showPopup();
+    });
+
+    // Handle form submission
+    userForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const userName = document.getElementById('userName').value.trim();
+        const mobileNumber = document.getElementById('mobileNumber').value.trim();
+        const mailID = document.getElementById('mailID').value.trim();
+
+        const data = {
+            userName,
+            mobileNumber,
+            mailID,
+            businessType: selectedBusinessType,
+        };
+
+        fetch('save_request.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(response => {
+            if (response.success) {
+                const requestId = response.requestId;
+
+                // Save details in localStorage
+                localStorage.setItem('gst_user_details', JSON.stringify({
+                    userName,
+                    mobileNumber,
+                    mailID,
+                    businessType: selectedBusinessType,
+                    requestId: requestId
+                }));
+
+                // Redirect to fixed form (adjust as needed)
+                window.location.href = "itr1form.php?request_id=" + encodeURIComponent(requestId);
+            } else {
+                alert('Error saving request.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error saving request.');
+        });
+    });
+
+    // Close popup events
+    closePopupBtn.addEventListener('click', hidePopup);
+    inlinePopupOverlay.addEventListener('click', hidePopup);
+
+    // Prefill hidden fields (if present)
+    const userDetails = JSON.parse(localStorage.getItem('gst_user_details'));
+    if (userDetails) {
+        if (document.getElementById('hiddenUserName'))
+            document.getElementById('hiddenUserName').value = userDetails.userName || '';
+        if (document.getElementById('hiddenMobileNumber'))
+            document.getElementById('hiddenMobileNumber').value = userDetails.mobileNumber || '';
+        if (document.getElementById('hiddenMailID'))
+            document.getElementById('hiddenMailID').value = userDetails.mailID || '';
+        if (document.getElementById('hiddenBusinessType'))
+            document.getElementById('hiddenBusinessType').value = userDetails.businessType || '';
+        if (document.getElementById('hiddenRequestId'))
+            document.getElementById('hiddenRequestId').value = userDetails.requestId || '';
+    }
+});
+</script>
+
+
+
+</body>
+</html>

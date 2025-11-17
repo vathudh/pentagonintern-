@@ -1,0 +1,780 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360 Business Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="services.css">
+    <link rel="stylesheet" href="style_form.css">
+    <link rel="stylesheet" href="ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+            <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Header styles */
+        .header {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .header {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .logo-container {
+            width: 200px;
+            height: auto;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .title-container {
+            flex: 1;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .title-gst {
+            color: #444;
+        }
+
+        .title-registration {
+            color: #22c55e;
+        }
+
+        /* Main content styles */
+        .main-content {
+            background-color: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .main-heading {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #22c55e;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .sub-heading {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #22c55e;
+            margin-bottom: 1rem;
+        }
+
+        /* Radio button styles */
+        .radio-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .radio-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .radio-options {
+                flex-direction: row;
+            }
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .radio-label {
+            font-weight: 500;
+        }
+
+        /* Content box styles */
+        .content-box {
+            border: 1px solid #22c55e;
+            border-radius: 0.375rem;
+            padding: 1.5rem;
+            background-color: white;
+            min-height: 11rem;
+            height: auto;
+            margin-bottom: 2rem; /* Added spacing for the button */
+        }
+
+        /* Document list styles */
+        .document-container {
+            display: none;
+        }
+
+        .document-container.active {
+            display: block;
+            width: 100%;
+        }
+
+        .document-heading {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .document-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .document-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .document-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.2s;
+        }
+
+        .document-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .document-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background-color: #22c55e;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        .document-text {
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* Custom radio button styling */
+        input[type="radio"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="radio"]:checked {
+            border-color: #22c55e;
+            background-color: white;
+            box-shadow: inset 0 0 0 4px #22c55e;
+        }
+
+        /* Default message */
+        .default-message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Continue button styles */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .continue-button {
+            background-color: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            min-width: 180px;
+            text-align: center;
+        }
+
+        .continue-button:hover {
+            background-color: #16a34a;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .continue-button:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .continue-button:disabled {
+            background-color: #a3e4b8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .continue-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #0cf404;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        }
+
+        .continue-button:hover {
+        background-color: #03ff81;
+        }
+        /* Hide popup and overlay by default */
+        .popup-overlay,
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+        }
+
+        .popup-overlay {
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.4);
+        }
+
+        .popup {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 350px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #888;
+            cursor: pointer;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            margin-bottom: 0.3rem;
+        }
+    </style>
+
+
+</head>
+<body>
+    <!-- Header -->
+
+<header>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <a href="index.php.html"><img src="images/logo360.png" alt="360 Logo" id="logo-img"></a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="mobile-menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav id="main-nav">
+            <ul class="menu">
+                <li><a href="index.php.html" class="">Home</a></li>
+                <li><a href="about.php.html" class="">About</a></li>
+                <li><a href="service.php.html" class="">Services</a></li>
+                <li><a href="testimonial.php.html" class="">Client Story</a></li>
+                <li><a href="contact.php.html" class="">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+
+
+    <section>
+
+        <div class="container">
+                                <div class="header">
+            <div class="logo-container">
+                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='none'/%3E%3Crect x='30' y='30' width='140' height='90' rx='5' fill='%23333'/%3E%3Crect x='35' y='35' width='130' height='80' rx='3' fill='%2322c55e'/%3E%3Cpath d='M50,130 L150,130 L140,150 L60,150 Z' fill='%23333'/%3E%3Crect x='70' y='130' width='60' height='5' fill='%23555'/%3E%3C/svg%3E" alt="Laptop illustration">
+            </div>
+            <div class="title-container">
+                <h1 class="title">
+                    <span class="title-gst">FSSAI</span> <span class="title-registration">Registration</span>
+                </h1>
+            </div>
+        </div>
+        </div>
+
+
+        <div class="container">
+                            <div class="main-content">
+            <h2 class="main-heading">
+                Let Us Handle Your FSSAI – So You Can Focus on What You Do Best
+            </h2>
+
+            <p class="description">
+                We get it — GST can be confusing and time-consuming. Whether you're just getting started or running a busy
+                business, keeping up with registrations, return filings, and compliance isn't easy. That's where we come in.
+            </p>
+
+            <p class="description">
+                Our GST services are designed to simplify the complexities of Goods and Services Tax compliance for
+                businesses of all sizes. From registration to filing returns, we provide expert guidance to ensure your
+                business stays fully compliant while maximizing tax efficiency
+            </p>
+
+            <h3 class="sub-heading">Choose why you business type </h3>
+
+            <div class="radio-group">
+                <div class="radio-options">
+                    <div class="radio-option">
+                        <input type="radio" id="basic-reg" name="business-type" value="basic-reg" checked="">
+                        <label for="basic-reg" class="radio-label">FSSAI Basic Registration</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="state-license" name="business-type" value="state-license">
+                        <label for="state-license" class="radio-label">FSSAI State License</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="central-license" name="business-type" value="central-license">
+                        <label for="central-license" class="radio-label">FSSAI Central License</label>
+                    </div>
+                    <!-- <div class="radio-option">
+                        <input type="radio" id="central-license" name="business-type" value="central-license">
+                        <label for="central-license" class="radio-label">FSSAI </label>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="content-box">
+                <div class="default-message" id="default-message">
+                    Please select a business type above to view required documents
+                </div>
+                
+                <!-- basic-reg Documents -->
+                <div class="document-container" id="basic-reg-docs">
+                    <h4 class="document-heading">Required Documents for basic-reg:</h4>
+                    <div class="document-columns">
+                        <div class="document-column">
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Aadhaar Card</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">PAN Card</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Photograph of Proprietor</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Company register certificate</span>
+                            </div>
+                        </div>
+                        <div class="document-column">
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Property Document</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Electricity Bill</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Property Tax Receipt</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- state-license Documents -->
+                <div class="document-container" id="state-license-docs">
+                    <h4 class="document-heading">Required Documents for state-license & LLPs:</h4>
+                    <div class="document-columns">
+                        <div class="document-column">
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Partner-Specific Document (Assume two Partners)</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Business information</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Aadhar Card</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Company register certificate</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">PAN Card</span>
+                            </div>
+                        </div>
+                        <div class="document-column">
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Company PAN Card</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Photograph</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Company Seal</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Property Document</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- central-license Documents -->
+                <div class="document-container" id="central-license-docs">
+                    <h4 class="document-heading">Required Documents for Private & Public Limited central-license:</h4>
+                    <div class="document-columns">
+                        <div class="document-column">
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Company information</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Director information</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Contact Details</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Business Details</span>
+                            </div>
+                        </div>
+                        <div class="document-column">
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Property Document</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Electricity Bill</span>
+                            </div>
+                            <div class="document-item">
+                                <span class="document-icon">✓</span>
+                                <span class="document-text">Property Tax Receipt</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="popup-overlay" id="inlinePopupOverlay"></div>
+            <div class="popup" id="inlinePopup">
+                <button class="close-btn" id="closePopupBtn">×</button>
+                <div class="formcontainer">
+                    <div class="form-title">Contact Detials</div>
+                    <form id="userForm" method="POST" validate="">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="userName">Name</label>
+                                <input type="text" id="userName" name="userName" placeholder="Enter your name" required="">
+                                <small class="help-text">User-name is required.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="mobileNumber">Number</label>
+                                <input type="text" id="mobileNumber" name="mobileNumber" placeholder="Enter Mobile Number" required="">
+                                <small class="help-text">Please enter mobile number.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="mailID">Email</label>
+                                <input type="email" id="mailID" name="mailID" placeholder="Enter Mail Address" required="">
+                                <small class="help-text">Please enter mail address.</small>
+                            </div>
+                        </div>
+                        <div class="submit-container">
+                            <button type="submit" id="openFormButton" class="submit-button">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Continue Button -->
+            <div class="button-container">
+             <button id="continue-button" class="continue-button" disabled="">Continue</button>
+            </div>
+        </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+        <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo">
+                        <img src="images/360logowhite.png" alt="360 Logo">
+                      
+                    </div>
+                    <p>Your trusted partner for business growth and compliance since 2015. We're dedicated to helping businesses of all sizes succeed.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#testimonial">Testimonial</a></li>
+                        <li><a href="#blog">Blogs</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Stay in the loop</h3>
+                    <p>Subscribe to our newsletter for the latest updates and insights.</p>
+                    <form>
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span class="current-year">2025</span> 360degreementor. All rights reserved.</p>
+                <div class="payment-methods">
+<p>&copy; <span class="current-year">2025</span> Designed &amp; Developed By <a href="index-1.htm">Pentagon Innovations</a> </p>
+               </div>
+            </div>
+        </div>
+    </footer>    
+    
+    <script src="script.js"></script>
+        <script>
+    const radioButtons = document.querySelectorAll('input[name="business-type"]');
+    const defaultMessage = document.getElementById('default-message');
+    const basicRegDocs = document.getElementById('basic-reg-docs');
+    const stateLicenseDocs = document.getElementById('state-license-docs');
+    const centralLicenseDocs = document.getElementById('central-license-docs');
+    const continueButton = document.getElementById('continue-button');
+
+    const userForm = document.getElementById('userForm');
+    const inlinePopup = document.getElementById('inlinePopup');
+    const inlinePopupOverlay = document.getElementById('inlinePopupOverlay');
+    const openFormBtn = document.getElementById('openFormBtn');
+    const closePopupBtn = document.getElementById('closePopupBtn');
+
+    let selectedBusinessType = null;
+
+    function showPopup() {
+        inlinePopup.style.display = 'block';
+        inlinePopupOverlay.style.display = 'block';
+    }
+
+    function hidePopup() {
+        inlinePopup.style.display = 'none';
+        inlinePopupOverlay.style.display = 'none';
+    }
+
+    inlinePopupOverlay.addEventListener("click", hidePopup);
+    closePopupBtn.addEventListener("click", hidePopup);
+
+    function hideAllDocuments() {
+        defaultMessage.style.display = 'flex';
+        basicRegDocs.classList.remove('active');
+        stateLicenseDocs.classList.remove('active');
+        centralLicenseDocs.classList.remove('active');
+        continueButton.disabled = true;
+    }
+
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', function () {
+            hideAllDocuments();
+
+            defaultMessage.style.display = 'none';
+            selectedBusinessType = this.value;
+
+            if (this.value === 'basic-reg') {
+                basicRegDocs.classList.add('active');
+            } else if (this.value === 'state-license') {
+                stateLicenseDocs.classList.add('active');
+            } else if (this.value === 'central-license') {
+                centralLicenseDocs.classList.add('active');
+            }
+
+            continueButton.disabled = false;
+        });
+    });
+
+    continueButton.addEventListener("click", function () {
+        if (selectedBusinessType) {
+            showPopup();
+        } else {
+            alert("Please select a business type.");
+        }
+    });
+
+    userForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const userName = document.getElementById('userName').value.trim();
+        const mobileNumber = document.getElementById('mobileNumber').value.trim();
+        const mailID = document.getElementById('mailID').value.trim();
+
+        if (!selectedBusinessType) {
+            alert("Please select a business type.");
+            return;
+        }
+
+        const data = {
+            userName,
+            mobileNumber,
+            mailID,
+            businessType: selectedBusinessType,
+        };
+
+        fetch('save_request.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(response => {
+            if (response.success) {
+                const requestId = response.requestId;
+
+                localStorage.setItem('gst_user_details', JSON.stringify({
+                    userName,
+                    mobileNumber,
+                    mailID,
+                    businessType: selectedBusinessType,
+                    requestId
+                }));
+
+                if (selectedBusinessType === 'basic-reg') {
+                    window.location.href = "FSSAI_Basic_Registration.php?request_id=" + encodeURIComponent(requestId);
+                } else if (selectedBusinessType === 'state-license') {
+                    window.location.href = "fssai_state_license.php?request_id=" + encodeURIComponent(requestId);
+                } else if (selectedBusinessType === 'central-license') {
+                    window.location.href = "fssai_central_license.php?request_id=" + encodeURIComponent(requestId);
+                } else {
+                    alert('Invalid business type selected.');
+                }
+            } else {
+                alert('Error saving request.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error saving request.');
+        });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        if (radioButtons.length > 0) {
+            radioButtons[0].checked = true;
+            radioButtons[0].dispatchEvent(new Event('change'));
+        }
+    });
+</script>
+
+
+</body>
+</html>
